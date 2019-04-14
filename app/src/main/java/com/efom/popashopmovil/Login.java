@@ -32,6 +32,7 @@ Login();
         String url = "http://192.168.1.7/servicioMovil/login.php?1login=crr&password=crr";
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         StringRequest stringRequest= new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
             @Override
             public void onResponse(String response) {
                 String[] retorno = response.trim().split("-");
