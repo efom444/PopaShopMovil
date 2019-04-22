@@ -21,34 +21,31 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-
-Login();
-
+        Login();
     }
-    public  void Login(){
 
+    public void Login() {
         //String url = "http://192.168.43.123:8080/miTiendaOnline/?c=AuthMovil";
         String url = "http://192.168.1.7/servicioMovil/login.php?1login=crr&password=crr";
-        RequestQueue requestQueue= Volley.newRequestQueue(this);
-        StringRequest stringRequest= new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 String[] retorno = response.trim().split("-");
-                Toast.makeText(getApplicationContext(), response.toString() , Toast.LENGTH_SHORT).show();
-                if(retorno[0].trim().equals("error")){
-                    Toast.makeText(getApplicationContext(), retorno[1] , Toast.LENGTH_SHORT).show();
-                }else{
-                    if(retorno[0].trim().equals("usuario")){
-                       // Toast.makeText(getApplicationContext(), "Bienvenid@ ".toString() + edtUserName.getText().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                if (retorno[0].trim().equals("error")) {
+                    Toast.makeText(getApplicationContext(), retorno[1], Toast.LENGTH_SHORT).show();
+                } else {
+                    if (retorno[0].trim().equals("usuario")) {
+                        // Toast.makeText(getApplicationContext(), "Bienvenid@ ".toString() + edtUserName.getText().toString(), Toast.LENGTH_SHORT).show();
 
-                       // usuarioLogin = retorno[1];
-                       // obtenerProductos();
-                        Toast.makeText(getApplicationContext(), response.toString() , Toast.LENGTH_SHORT).show();
+                        // usuarioLogin = retorno[1];
+                        // obtenerProductos();
+                        Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
 
-                    }else{
-                        Toast.makeText(getApplicationContext(), "Usuario no permitido" , Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Usuario no permitido", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -57,10 +54,10 @@ Login();
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),
-                        "Error al conectarse".toString(), Toast.LENGTH_SHORT ).show();
-                Toast.makeText(getApplicationContext(), "Verifique su conexion a la red".toString(), Toast.LENGTH_SHORT ).show();
+                        "Error al conectarse".toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Verifique su conexion a la red".toString(), Toast.LENGTH_SHORT).show();
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
 

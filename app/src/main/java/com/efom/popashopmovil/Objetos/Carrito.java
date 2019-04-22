@@ -1,7 +1,6 @@
 package com.efom.popashopmovil.Objetos;
 
 public class Carrito {
-
     private Integer idProducto;
     private String nombre;
     private String foto;

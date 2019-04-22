@@ -1,23 +1,25 @@
 package com.efom.popashopmovil.Servicios;
+
 import android.content.Context;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-public final class MySingletonVolley {
+public final class SingletonVolley {
     // Atributos
-    private static MySingletonVolley singleton;
+    private static SingletonVolley singleton;
     private RequestQueue requestQueue;
     private static Context context;
 
-    private MySingletonVolley(Context context) {
-        MySingletonVolley.context = context;
+    private SingletonVolley(Context context) {
+        SingletonVolley.context = context;
         requestQueue = getRequestQueue();
     }
 
-    public static synchronized MySingletonVolley getInstance(Context context) {
+    public static synchronized SingletonVolley getInstance(Context context) {
         if (singleton == null) {
-            singleton = new MySingletonVolley(context);
+            singleton = new SingletonVolley(context);
         }
         return singleton;
     }
@@ -29,7 +31,7 @@ public final class MySingletonVolley {
         return requestQueue;
     }
 
-    public  void addToRequestQueue(Request req) {
+    public void addToRequestQueue(Request req) {
         getRequestQueue().add(req);
     }
 

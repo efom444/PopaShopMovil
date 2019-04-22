@@ -1,6 +1,7 @@
 package com.efom.popashopmovil.Servicios;
 
 import android.content.Context;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -8,6 +9,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,17 +18,17 @@ public class FacadeRequestVolley {
     static RequestQueue queue;
     static StringRequest stringRequest;
     static Context context;
-    static ComunicaVolley comunicaVolley;
+    static IRespuestasVolley IRespuestasVolley;
 
-    public FacadeRequestVolley(ComunicaVolley comunicaVolley, Context context) {
+    public FacadeRequestVolley(IRespuestasVolley IRespuestasVolley, Context context) {
         /******* LA VISTA PERTENCE AL LUGAR DONDE DE EJECUTA Y LA ACTIVIDAD DEL LUGAR ******/
         //contexto de lugar de ejecucion. Ej: fragmento = Fragment.this, actividad = Main.this
-        FacadeRequestVolley.comunicaVolley = comunicaVolley;
+        FacadeRequestVolley.IRespuestasVolley = IRespuestasVolley;
         //contexto de actividad. Ej: fragmento = getActivity, actividad = Main.this
         FacadeRequestVolley.context = context;
     }
 
-    public void peticion(String datos, String fechas, String user_tipo_limite, String url){
+    public void peticion(String datos, String fechas, String user_tipo_limite, String url) {
         queue = Volley.newRequestQueue(context);
 
 
@@ -40,14 +42,14 @@ public class FacadeRequestVolley {
             @Override
             public void onResponse(String response) {
                 /******* ENVIA EL STRING RESPONSE POR UNA INTERFAZ ******/
-                comunicaVolley.completeSuccess(response);
+                IRespuestasVolley.completeSuccess(response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                comunicaVolley.completeError(error);
+                IRespuestasVolley.completeError(error);
             }
-        }){
+        }) {
             /*=============      ENVIAR POR POST AL WEBSERVISE      ===============*/
             @Override
             protected Map<String, String> getParams() {
@@ -75,6 +77,6 @@ public class FacadeRequestVolley {
 
             }
         });
-        MySingletonVolley.getInstance(context).addToRequestQueue(stringRequest);
+        SingletonVolley.getInstance(context).addToRequestQueue(stringRequest);
     }
 }

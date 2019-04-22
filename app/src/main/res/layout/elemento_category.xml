@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:orientation="vertical"
     >
 
     <LinearLayout
@@ -27,18 +25,16 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="8dp" />
+
             <TextView
                 android:id="@+id/tv_descripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:paddingBottom="8dp"
                 android:text="@string/nombre"
-android:paddingBottom="8dp"
                 android:textAppearance="@android:style/TextAppearance.Large"
                 android:textSize="17dp" />
-
-
-
 
 
         </LinearLayout>

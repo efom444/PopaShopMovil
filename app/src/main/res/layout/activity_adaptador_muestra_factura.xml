@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:orientation="vertical"
     >
 
     <LinearLayout
-
         android:id="@+id/producto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,26 +19,21 @@
             android:id="@+id/tv_foto1"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/aquijue"
             android:contentDescription="@string/image_desc"
-            />
+            android:src="@drawable/aquijue" />
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="horizontal">
-
-
 
             <TextView
                 android:id="@+id/tv_nombre12"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:text="@string/nombre"
                 android:paddingLeft="5dp"
                 android:paddingBottom="8dp"
+                android:text="@string/nombre"
                 android:textAppearance="@android:style/TextAppearance.Large"
                 android:textSize="17dp" />
 
@@ -49,9 +41,9 @@
                 android:id="@+id/tv_cantidad12"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:text="1"
                 android:gravity="center_horizontal"
                 android:paddingBottom="8dp"
+                android:text="1"
                 android:textAppearance="@android:style/TextAppearance.Large"
                 android:textSize="20dp" />
 
@@ -59,18 +51,12 @@
                 android:id="@+id/tv_acumulado12"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
-                android:text="@string/nombre"
                 android:paddingLeft="8dp"
                 android:paddingBottom="8dp"
+                android:text="@string/nombre"
                 android:textAppearance="@android:style/TextAppearance.Large"
                 android:textSize="17dp" />
-
-
-
-
-
         </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>

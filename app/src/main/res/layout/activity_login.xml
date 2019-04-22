@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_degradado"
     android:orientation="vertical"
-    android:background="@drawable/fondo_degradado">
-
+    >
 
     <LinearLayout
-        android:gravity="center"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="470dp">
+        android:layout_height="470dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
 
         <ImageView
@@ -18,35 +18,29 @@
             android:layout_height="120dp"
             android:src="@drawable/fotoregistrer" />
 
-
-
-
-
         <LinearLayout
-            android:gravity="center"
-            android:background="@color/transparente"
-            android:orientation="vertical"
             android:layout_width="320dp"
             android:layout_height="290dp"
-            android:layout_margin="15dp">
-
-
+            android:layout_margin="15dp"
+            android:background="@color/transparente"
+            android:gravity="center"
+            android:orientation="vertical">
 
 
             <TextView
-                android:textColor="@color/blanco"
-                android:paddingTop="30dp"
-                android:textSize="25dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/bienvenido" />
+                android:paddingTop="30dp"
+                android:text="@string/bienvenido"
+                android:textColor="@color/blanco"
+                android:textSize="25dp" />
 
 
             <LinearLayout
 
-                android:layout_marginTop="10pt"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10pt"
                 android:orientation="horizontal">
 
 
@@ -59,22 +53,21 @@
                     android:ems="10"
                     android:hint="Usuario"
                     android:inputType="text"
-                    android:paddingBottom="10dp"
                     android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/blanco"
                     android:textColorHint="@color/blanco"
                     android:textSize="15dp" />
-
 
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:paddingTop="10dp"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
 
 
                 <EditText
@@ -86,8 +79,8 @@
                     android:ems="10"
                     android:hint="Contraseña"
                     android:inputType="textPassword"
-                    android:paddingBottom="10dp"
                     android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/blanco"
                     android:textColorHint="@color/blanco"
                     android:textSize="15dp" />
@@ -110,8 +103,6 @@
                     android:text="Acceder" />
 
 
-
-
             </LinearLayout>
 
             <TextView
@@ -125,13 +116,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#0E8AEE"
                 android:visibility="invisible" />
-
-
         </LinearLayout>
 
-
-
     </LinearLayout>
-
 
 </LinearLayout>

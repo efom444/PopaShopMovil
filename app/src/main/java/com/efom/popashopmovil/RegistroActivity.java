@@ -1,4 +1,5 @@
 package com.efom.popashopmovil;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +27,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class RegistroActivity extends Activity {
 
     private ImageView ivFoto;
@@ -34,8 +34,8 @@ public class RegistroActivity extends Activity {
     private ImageButton ibCamera;
     private ImageButton ibG;
     private Gson gson;
-    private EditText idTipoDocumento,documentoPersona,nombrePersona,apellidoPersona,
-    correoPersona,telefonoPersona,avatarPersona,direccionPersona, usuario, password;
+    private EditText idTipoDocumento, documentoPersona, nombrePersona, apellidoPersona,
+            correoPersona, telefonoPersona, avatarPersona, direccionPersona, usuario, password;
     private Button registrar;
     private TextView idTipoDocumentoNumb;
     Spinner spinner;
@@ -49,26 +49,29 @@ public class RegistroActivity extends Activity {
         gson = new Gson();
         final String tipoIdent = getIntent().getStringExtra("tiposDocumentosBD");
         // Convertimos el JSON_ARRAY en una lista
-        final List<TipoIdentificacion> tipoIdentificacionList = gson.fromJson(tipoIdent, new TypeToken<List<TipoIdentificacion>>(){}.getType());
-        registrar=findViewById(R.id.btn_Registrar) ;
-        spinner=(Spinner)findViewById(R.id.tipoDocumento);
+        final List<TipoIdentificacion> tipoIdentificacionList = gson.fromJson(tipoIdent, new TypeToken<List<TipoIdentificacion>>() {
+        }.getType());
+        registrar = findViewById(R.id.btn_Registrar);
+        spinner = (Spinner) findViewById(R.id.tipoDocumento);
         final String[] data1 = new String[tipoIdentificacionList.size()];
-        for(int j = 0; j < tipoIdentificacionList.size();j++){
-            data1[j] = tipoIdentificacionList.get(j).getTipoDeDocumento();}
-        ArrayAdapter<String> adaptador=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data1);
+        for (int j = 0; j < tipoIdentificacionList.size(); j++) {
+            data1[j] = tipoIdentificacionList.get(j).getTipoDeDocumento();
+        }
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data1);
         spinner.setAdapter(adaptador);
 
-        idTipoDocumentoNumb=findViewById(R.id.idTipoDocumentoNumb);
+        idTipoDocumentoNumb = findViewById(R.id.idTipoDocumentoNumb);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 spinner.getItemAtPosition(i);
-                int position= 1;
-                int id = position+i;
+                int position = 1;
+                int id = position + i;
 
-                String idTipoDocumentNumb= toString().valueOf(id);
+                String idTipoDocumentNumb = toString().valueOf(id);
                 idTipoDocumentoNumb.setText(idTipoDocumentNumb);
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -76,104 +79,102 @@ public class RegistroActivity extends Activity {
         });
 
 
-
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-              documentoPersona=findViewById(R.id.documentoPersona);
-                nombrePersona=findViewById(R.id.nombrePersona);
-                apellidoPersona=findViewById(R.id.apellidoPersona);
-                correoPersona=findViewById(R.id.correoPersona);
-                telefonoPersona=findViewById(R.id.telefonoPersona);
-                direccionPersona=findViewById(R.id.direccionPersona);
-                usuario=findViewById(R.id.Crearusuario);
-                password=findViewById(R.id.crearPassword);
-              if (documentoPersona.getText().toString().length()>0&&documentoPersona.getText().toString().length()==10&&
-                        nombrePersona.getText().toString().length()>0 &&apellidoPersona.getText().toString().length()>0&&
-                        correoPersona.getText().toString().length()>0 && correoPersona.toString().length() > 0 &&
-                      telefonoPersona.getText().toString().length()>0 &&telefonoPersona.toString().length()>=10 &&
-                        direccionPersona.getText().toString().length()>0&&usuario.getText().toString().length()>0&&password.getText().toString().length()>5){
+                documentoPersona = findViewById(R.id.documentoPersona);
+                nombrePersona = findViewById(R.id.nombrePersona);
+                apellidoPersona = findViewById(R.id.apellidoPersona);
+                correoPersona = findViewById(R.id.correoPersona);
+                telefonoPersona = findViewById(R.id.telefonoPersona);
+                direccionPersona = findViewById(R.id.direccionPersona);
+                usuario = findViewById(R.id.Crearusuario);
+                password = findViewById(R.id.crearPassword);
+                if (documentoPersona.getText().toString().length() > 0 && documentoPersona.getText().toString().length() == 10 &&
+                        nombrePersona.getText().toString().length() > 0 && apellidoPersona.getText().toString().length() > 0 &&
+                        correoPersona.getText().toString().length() > 0 && correoPersona.toString().length() > 0 &&
+                        telefonoPersona.getText().toString().length() > 0 && telefonoPersona.toString().length() >= 10 &&
+                        direccionPersona.getText().toString().length() > 0 && usuario.getText().toString().length() > 0 && password.getText().toString().length() > 5) {
                     validarSiExisteUsuario();
 
-                    }else {
+                } else {
 
-                  Toast.makeText(getApplicationContext(), "Ingrese datos validos", Toast.LENGTH_SHORT ).show();
+                    Toast.makeText(getApplicationContext(), "Ingrese datos validos", Toast.LENGTH_SHORT).show();
 
-                  if (documentoPersona.getText().toString().length()>0 &&documentoPersona.getText().toString().length()==10){
-                      documentoPersona.setTextColor(getResources().getColor(R.color.blanco));
-                  }else {
+                    if (documentoPersona.getText().toString().length() > 0 && documentoPersona.getText().toString().length() == 10) {
+                        documentoPersona.setTextColor(getResources().getColor(R.color.blanco));
+                    } else {
 
-                      documentoPersona.setHintTextColor(getResources().getColor(R.color.colorAccent));
-                      documentoPersona.setTextColor(getResources().getColor(R.color.colorAccent));
-                  }
-                    if (nombrePersona.getText().toString().length()>0){
+                        documentoPersona.setHintTextColor(getResources().getColor(R.color.colorAccent));
+                        documentoPersona.setTextColor(getResources().getColor(R.color.colorAccent));
+                    }
+                    if (nombrePersona.getText().toString().length() > 0) {
                         nombrePersona.setTextColor(getResources().getColor(R.color.blanco));
-                    }else {
+                    } else {
 
                         nombrePersona.setHintTextColor(getResources().getColor(R.color.colorAccent));
                         nombrePersona.setTextColor(getResources().getColor(R.color.colorAccent));
                     }
-                    if (apellidoPersona.getText().toString().length()>0 ){
+                    if (apellidoPersona.getText().toString().length() > 0) {
                         apellidoPersona.setTextColor(getResources().getColor(R.color.blanco));
-                    }else {
+                    } else {
 
                         apellidoPersona.setHintTextColor(getResources().getColor(R.color.colorAccent));
                         apellidoPersona.setTextColor(getResources().getColor(R.color.colorAccent));
                     }
-                    if (correoPersona.getText().toString().length()>0&& correoPersona.length() > 0){
+                    if (correoPersona.getText().toString().length() > 0 && correoPersona.length() > 0) {
                         correoPersona.setTextColor(getResources().getColor(R.color.blanco));
-                    }else {
+                    } else {
 
                         correoPersona.setHintTextColor(getResources().getColor(R.color.colorAccent));
                         correoPersona.setTextColor(getResources().getColor(R.color.colorAccent));
                     }
-                  if (telefonoPersona.getText().toString().length()>0 &&telefonoPersona.getText().toString().length()==10){
-                      telefonoPersona.setTextColor(getResources().getColor(R.color.blanco));
-                  }else {
+                    if (telefonoPersona.getText().toString().length() > 0 && telefonoPersona.getText().toString().length() == 10) {
+                        telefonoPersona.setTextColor(getResources().getColor(R.color.blanco));
+                    } else {
 
-                      telefonoPersona.setHintTextColor(getResources().getColor(R.color.colorAccent));
-                      telefonoPersona.setTextColor(getResources().getColor(R.color.colorAccent));
-                  }
-                    if (direccionPersona.getText().length()>0){
+                        telefonoPersona.setHintTextColor(getResources().getColor(R.color.colorAccent));
+                        telefonoPersona.setTextColor(getResources().getColor(R.color.colorAccent));
+                    }
+                    if (direccionPersona.getText().length() > 0) {
                         direccionPersona.setTextColor(getResources().getColor(R.color.blanco));
-                    }else {
+                    } else {
 
                         direccionPersona.setHintTextColor(getResources().getColor(R.color.colorAccent));
                         direccionPersona.setTextColor(getResources().getColor(R.color.colorAccent));
                     }
-                    if (usuario.getText().length()>0){
+                    if (usuario.getText().length() > 0) {
                         usuario.setTextColor(getResources().getColor(R.color.blanco));
-                    }else {
+                    } else {
 
                         usuario.setHintTextColor(getResources().getColor(R.color.colorAccent));
                         usuario.setTextColor(getResources().getColor(R.color.colorAccent));
                     }
-                    if (password.getText().toString().length()>5){
+                    if (password.getText().toString().length() > 5) {
                         password.setTextColor(getResources().getColor(R.color.blanco));
-                    }else{
+                    } else {
 
                         password.setHintTextColor(getResources().getColor(R.color.colorAccent));
                         password.setTextColor(getResources().getColor(R.color.colorAccent));
                     }
-                    }
+                }
             }
         });
     }
 
 
+    private void validarSiExisteUsuario() {
 
-private void validarSiExisteUsuario(){
 
-
-    documentoPersona=findViewById(R.id.documentoPersona);
-    usuario=findViewById(R.id.Crearusuario);
-    password=findViewById(R.id.crearPassword);
+        documentoPersona = findViewById(R.id.documentoPersona);
+        usuario = findViewById(R.id.Crearusuario);
+        password = findViewById(R.id.crearPassword);
 
         //String url = "http://192.168.43.123:8080/miTiendaOnline/?c=AuthMovil";
         String url = "http://192.168.43.127/miTiendaOnline/?c=PersonaMovil&a=actionValidar";
-        RequestQueue requestQueue= Volley.newRequestQueue(this);
-        StringRequest stringRequest= new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -181,30 +182,30 @@ private void validarSiExisteUsuario(){
                 String[] retorno = response.trim().split("-");
                 //  Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG ).show();
 
-                if(retorno[0].trim().equals("error")){
-                    Toast.makeText(getApplicationContext(), retorno[1] , Toast.LENGTH_SHORT).show();
-                }else{
-                    if(retorno[0].trim().equals("existeiden")){
+                if (retorno[0].trim().equals("error")) {
+                    Toast.makeText(getApplicationContext(), retorno[1], Toast.LENGTH_SHORT).show();
+                } else {
+                    if (retorno[0].trim().equals("existeiden")) {
 
                         Toast.makeText(getApplicationContext(), "Este numero de identificacion ya esta registrado", Toast.LENGTH_SHORT).show();
                         documentoPersona.setHintTextColor(getResources().getColor(R.color.colorAccent));
                         documentoPersona.setTextColor(getResources().getColor(R.color.colorAccent));
 
 
-                    }else{
+                    } else {
 
 
                         documentoPersona.setHintTextColor(getResources().getColor(R.color.blanco));
                         documentoPersona.setTextColor(getResources().getColor(R.color.blanco));
 
-                        if(retorno[0].trim().equals("existe")){
+                        if (retorno[0].trim().equals("existe")) {
 
                             Toast.makeText(getApplicationContext(), "Este nombre de usuario ya existe", Toast.LENGTH_SHORT).show();
                             usuario.setHintTextColor(getResources().getColor(R.color.colorAccent));
                             usuario.setTextColor(getResources().getColor(R.color.colorAccent));
 
 
-                        }else{
+                        } else {
                             usuario.setHintTextColor(getResources().getColor(R.color.blanco));
                             usuario.setTextColor(getResources().getColor(R.color.blanco));
                             Registrar();
@@ -218,10 +219,10 @@ private void validarSiExisteUsuario(){
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),
-                        "Error al conectarse".toString(), Toast.LENGTH_SHORT ).show();
-                Toast.makeText(getApplicationContext(), "Verifique su conexion a la red".toString(), Toast.LENGTH_SHORT ).show();
+                        "Error al conectarse".toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Verifique su conexion a la red".toString(), Toast.LENGTH_SHORT).show();
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
 
@@ -235,32 +236,31 @@ private void validarSiExisteUsuario(){
     }
 
 
-
-    private  void Registrar(){
+    private void Registrar() {
         ivFoto = findViewById(R.id.avatar);
-        spinner=(Spinner)findViewById(R.id.tipoDocumento);
-        documentoPersona=findViewById(R.id.documentoPersona);
-        nombrePersona=findViewById(R.id.nombrePersona);
-        apellidoPersona=findViewById(R.id.apellidoPersona);
-        correoPersona=findViewById(R.id.correoPersona);
-        telefonoPersona=findViewById(R.id.telefonoPersona);
-        direccionPersona=findViewById(R.id.direccionPersona);
-        usuario=findViewById(R.id.Crearusuario);
-        password=findViewById(R.id.crearPassword);
-        idTipoDocumentoNumb=findViewById(R.id.idTipoDocumentoNumb);
-       // String url = "http://192.168.43.123:8080/miTiendaOnline/private/administrador/?c=PersonaMovil&a=actionCreate";
+        spinner = (Spinner) findViewById(R.id.tipoDocumento);
+        documentoPersona = findViewById(R.id.documentoPersona);
+        nombrePersona = findViewById(R.id.nombrePersona);
+        apellidoPersona = findViewById(R.id.apellidoPersona);
+        correoPersona = findViewById(R.id.correoPersona);
+        telefonoPersona = findViewById(R.id.telefonoPersona);
+        direccionPersona = findViewById(R.id.direccionPersona);
+        usuario = findViewById(R.id.Crearusuario);
+        password = findViewById(R.id.crearPassword);
+        idTipoDocumentoNumb = findViewById(R.id.idTipoDocumentoNumb);
+        // String url = "http://192.168.43.123:8080/miTiendaOnline/private/administrador/?c=PersonaMovil&a=actionCreate";
         String url = "http://192.168.43.127/miTiendaOnline/?c=PersonaMovil&a=actionCreate";
 
-        RequestQueue requestQueue= Volley.newRequestQueue(this);
-        StringRequest stringRequest= new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if(response.trim().equals("parametros")){
-                    Toast.makeText(getApplicationContext(), "No hay parametros" , Toast.LENGTH_SHORT).show();
-                }else {
+                if (response.trim().equals("parametros")) {
+                    Toast.makeText(getApplicationContext(), "No hay parametros", Toast.LENGTH_SHORT).show();
+                } else {
                     if (response.trim().equals("Registrado")) {
-                        Intent intent= new Intent();
-                        Toast.makeText(getApplicationContext(), "REGISTRADO", Toast.LENGTH_LONG ).show();
+                        Intent intent = new Intent();
+                        Toast.makeText(getApplicationContext(), "REGISTRADO", Toast.LENGTH_LONG).show();
                         setResult(RESULT_OK, intent);
                         finish();
                     } else {
@@ -271,10 +271,10 @@ private void validarSiExisteUsuario(){
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error al conectarse".toString(), Toast.LENGTH_LONG ).show();
-                Toast.makeText(getApplicationContext(), "Verifique su conexion a la red".toString(), Toast.LENGTH_LONG ).show();
+                Toast.makeText(getApplicationContext(), "Error al conectarse".toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Verifique su conexion a la red".toString(), Toast.LENGTH_LONG).show();
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
